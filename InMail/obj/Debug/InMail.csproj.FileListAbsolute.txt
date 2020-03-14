@@ -1,0 +1,10 @@
+c:\users\codex\source\repos\InMail\InMail\bin\Debug\InMail.exe.config
+c:\users\codex\source\repos\InMail\InMail\bin\Debug\InMail.exe
+c:\users\codex\source\repos\InMail\InMail\bin\Debug\InMail.pdb
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.csprojAssemblyReference.cache
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.MainForm.resources
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.Properties.Resources.resources
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.csproj.GenerateResource.cache
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.csproj.CoreCompileInputs.cache
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.exe
+c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.pdb
