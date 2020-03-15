@@ -35,27 +35,28 @@ namespace InMail
             this.EmailMessangePlaceholder = new System.Windows.Forms.Label();
             this.EmailTextbox = new System.Windows.Forms.TextBox();
             this.Basic = new System.Windows.Forms.Panel();
+            this.AttachmentPicture = new System.Windows.Forms.PictureBox();
+            this.MailText = new System.Windows.Forms.TextBox();
+            this.SubjectTextbox = new System.Windows.Forms.TextBox();
+            this.SubjectLabel = new System.Windows.Forms.Label();
             this.RecipientsLabel = new System.Windows.Forms.Label();
             this.SendButton = new System.Windows.Forms.Button();
+            this.CCBCCPanel = new System.Windows.Forms.Panel();
+            this.CloseCCBCC = new System.Windows.Forms.PictureBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.BCCLabel = new System.Windows.Forms.Label();
+            this.CClabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CCBCCButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ThemeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.βοήθειαToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SubjectLabel = new System.Windows.Forms.Label();
-            this.SubjectTextbox = new System.Windows.Forms.TextBox();
-            this.CCBCCPanel = new System.Windows.Forms.Panel();
-            this.CCBCCButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.CClabel = new System.Windows.Forms.Label();
-            this.BCCLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.MailText = new System.Windows.Forms.TextBox();
-            this.AttachmentPicture = new System.Windows.Forms.PictureBox();
-            this.CloseCCBCC = new System.Windows.Forms.PictureBox();
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Basic.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.CCBCCPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).BeginInit();
+            this.CCBCCPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // GreetingLabel
@@ -104,6 +105,44 @@ namespace InMail
             this.Basic.Size = new System.Drawing.Size(557, 376);
             this.Basic.TabIndex = 3;
             // 
+            // AttachmentPicture
+            // 
+            this.AttachmentPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AttachmentPicture.Image = global::InMail.Properties.Resources.Paperclip;
+            this.AttachmentPicture.Location = new System.Drawing.Point(18, 351);
+            this.AttachmentPicture.Name = "AttachmentPicture";
+            this.AttachmentPicture.Size = new System.Drawing.Size(20, 22);
+            this.AttachmentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AttachmentPicture.TabIndex = 11;
+            this.AttachmentPicture.TabStop = false;
+            // 
+            // MailText
+            // 
+            this.MailText.Location = new System.Drawing.Point(18, 156);
+            this.MailText.Multiline = true;
+            this.MailText.Name = "MailText";
+            this.MailText.Size = new System.Drawing.Size(535, 192);
+            this.MailText.TabIndex = 10;
+            // 
+            // SubjectTextbox
+            // 
+            this.SubjectTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.SubjectTextbox.Location = new System.Drawing.Point(117, 65);
+            this.SubjectTextbox.Name = "SubjectTextbox";
+            this.SubjectTextbox.Size = new System.Drawing.Size(436, 20);
+            this.SubjectTextbox.TabIndex = 8;
+            this.SubjectTextbox.Text = "Θέμα μηνύματος\r\n";
+            // 
+            // SubjectLabel
+            // 
+            this.SubjectLabel.AutoSize = true;
+            this.SubjectLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.SubjectLabel.Location = new System.Drawing.Point(53, 65);
+            this.SubjectLabel.Name = "SubjectLabel";
+            this.SubjectLabel.Size = new System.Drawing.Size(47, 16);
+            this.SubjectLabel.TabIndex = 7;
+            this.SubjectLabel.Text = "Θέμα :";
+            // 
             // RecipientsLabel
             // 
             this.RecipientsLabel.AutoSize = true;
@@ -122,10 +161,86 @@ namespace InMail
             this.SendButton.TabIndex = 5;
             this.SendButton.Text = "Αποστολή";
             this.SendButton.UseVisualStyleBackColor = true;
+            this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
+            // 
+            // CCBCCPanel
+            // 
+            this.CCBCCPanel.Controls.Add(this.CloseCCBCC);
+            this.CCBCCPanel.Controls.Add(this.textBox2);
+            this.CCBCCPanel.Controls.Add(this.BCCLabel);
+            this.CCBCCPanel.Controls.Add(this.CClabel);
+            this.CCBCCPanel.Controls.Add(this.textBox1);
+            this.CCBCCPanel.Location = new System.Drawing.Point(18, 87);
+            this.CCBCCPanel.Name = "CCBCCPanel";
+            this.CCBCCPanel.Size = new System.Drawing.Size(538, 52);
+            this.CCBCCPanel.TabIndex = 9;
+            this.CCBCCPanel.Visible = false;
+            // 
+            // CloseCCBCC
+            // 
+            this.CloseCCBCC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloseCCBCC.Image = global::InMail.Properties.Resources.Close;
+            this.CloseCCBCC.Location = new System.Drawing.Point(0, 0);
+            this.CloseCCBCC.Name = "CloseCCBCC";
+            this.CloseCCBCC.Size = new System.Drawing.Size(20, 21);
+            this.CloseCCBCC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CloseCCBCC.TabIndex = 12;
+            this.CloseCCBCC.TabStop = false;
+            this.CloseCCBCC.Visible = false;
+            this.CloseCCBCC.Click += new System.EventHandler(this.CloseCCBCC_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.textBox2.Location = new System.Drawing.Point(99, 28);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(436, 20);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "BCC";
+            // 
+            // BCCLabel
+            // 
+            this.BCCLabel.AutoSize = true;
+            this.BCCLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.BCCLabel.Location = new System.Drawing.Point(42, 30);
+            this.BCCLabel.Name = "BCCLabel";
+            this.BCCLabel.Size = new System.Drawing.Size(39, 15);
+            this.BCCLabel.TabIndex = 8;
+            this.BCCLabel.Text = "BCC :";
+            // 
+            // CClabel
+            // 
+            this.CClabel.AutoSize = true;
+            this.CClabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.CClabel.Location = new System.Drawing.Point(47, 6);
+            this.CClabel.Name = "CClabel";
+            this.CClabel.Size = new System.Drawing.Size(31, 15);
+            this.CClabel.TabIndex = 7;
+            this.CClabel.Text = "CC :";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.textBox1.Location = new System.Drawing.Point(99, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(436, 20);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "CC";
+            // 
+            // CCBCCButton
+            // 
+            this.CCBCCButton.Location = new System.Drawing.Point(39, 86);
+            this.CCBCCButton.Name = "CCBCCButton";
+            this.CCBCCButton.Size = new System.Drawing.Size(56, 22);
+            this.CCBCCButton.TabIndex = 0;
+            this.CCBCCButton.Text = "CC/BCC";
+            this.CCBCCButton.UseVisualStyleBackColor = true;
+            this.CCBCCButton.Click += new System.EventHandler(this.CCBCCButton_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem,
             this.ThemeColorToolStripMenuItem,
             this.βοήθειαToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -147,117 +262,12 @@ namespace InMail
             this.βοήθειαToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.βοήθειαToolStripMenuItem.Text = "Βοήθεια!";
             // 
-            // SubjectLabel
+            // τροποποίησηΣτοιχείωνToolStripMenuItem
             // 
-            this.SubjectLabel.AutoSize = true;
-            this.SubjectLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.SubjectLabel.Location = new System.Drawing.Point(53, 65);
-            this.SubjectLabel.Name = "SubjectLabel";
-            this.SubjectLabel.Size = new System.Drawing.Size(47, 16);
-            this.SubjectLabel.TabIndex = 7;
-            this.SubjectLabel.Text = "Θέμα :";
-            // 
-            // SubjectTextbox
-            // 
-            this.SubjectTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.SubjectTextbox.Location = new System.Drawing.Point(117, 65);
-            this.SubjectTextbox.Name = "SubjectTextbox";
-            this.SubjectTextbox.Size = new System.Drawing.Size(436, 20);
-            this.SubjectTextbox.TabIndex = 8;
-            this.SubjectTextbox.Text = "Θέμα μηνύματος\r\n";
-            // 
-            // CCBCCPanel
-            // 
-            this.CCBCCPanel.Controls.Add(this.CloseCCBCC);
-            this.CCBCCPanel.Controls.Add(this.textBox2);
-            this.CCBCCPanel.Controls.Add(this.BCCLabel);
-            this.CCBCCPanel.Controls.Add(this.CClabel);
-            this.CCBCCPanel.Controls.Add(this.textBox1);
-            this.CCBCCPanel.Location = new System.Drawing.Point(18, 87);
-            this.CCBCCPanel.Name = "CCBCCPanel";
-            this.CCBCCPanel.Size = new System.Drawing.Size(538, 52);
-            this.CCBCCPanel.TabIndex = 9;
-            this.CCBCCPanel.Visible = false;
-            // 
-            // CCBCCButton
-            // 
-            this.CCBCCButton.Location = new System.Drawing.Point(39, 86);
-            this.CCBCCButton.Name = "CCBCCButton";
-            this.CCBCCButton.Size = new System.Drawing.Size(56, 22);
-            this.CCBCCButton.TabIndex = 0;
-            this.CCBCCButton.Text = "CC/BCC";
-            this.CCBCCButton.UseVisualStyleBackColor = true;
-            this.CCBCCButton.Click += new System.EventHandler(this.CCBCCButton_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBox1.Location = new System.Drawing.Point(99, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(436, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "CC";
-            // 
-            // CClabel
-            // 
-            this.CClabel.AutoSize = true;
-            this.CClabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.CClabel.Location = new System.Drawing.Point(47, 6);
-            this.CClabel.Name = "CClabel";
-            this.CClabel.Size = new System.Drawing.Size(31, 15);
-            this.CClabel.TabIndex = 7;
-            this.CClabel.Text = "CC :";
-            // 
-            // BCCLabel
-            // 
-            this.BCCLabel.AutoSize = true;
-            this.BCCLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.BCCLabel.Location = new System.Drawing.Point(42, 30);
-            this.BCCLabel.Name = "BCCLabel";
-            this.BCCLabel.Size = new System.Drawing.Size(39, 15);
-            this.BCCLabel.TabIndex = 8;
-            this.BCCLabel.Text = "BCC :";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBox2.Location = new System.Drawing.Point(99, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(436, 20);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.Text = "BCC";
-            // 
-            // MailText
-            // 
-            this.MailText.Location = new System.Drawing.Point(18, 156);
-            this.MailText.Multiline = true;
-            this.MailText.Name = "MailText";
-            this.MailText.Size = new System.Drawing.Size(535, 192);
-            this.MailText.TabIndex = 10;
-            // 
-            // AttachmentPicture
-            // 
-            this.AttachmentPicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AttachmentPicture.Image = global::InMail.Properties.Resources.Paperclip;
-            this.AttachmentPicture.Location = new System.Drawing.Point(18, 351);
-            this.AttachmentPicture.Name = "AttachmentPicture";
-            this.AttachmentPicture.Size = new System.Drawing.Size(20, 22);
-            this.AttachmentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AttachmentPicture.TabIndex = 11;
-            this.AttachmentPicture.TabStop = false;
-            // 
-            // CloseCCBCC
-            // 
-            this.CloseCCBCC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseCCBCC.Image = global::InMail.Properties.Resources.Close;
-            this.CloseCCBCC.Location = new System.Drawing.Point(0, 0);
-            this.CloseCCBCC.Name = "CloseCCBCC";
-            this.CloseCCBCC.Size = new System.Drawing.Size(20, 21);
-            this.CloseCCBCC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CloseCCBCC.TabIndex = 12;
-            this.CloseCCBCC.TabStop = false;
-            this.CloseCCBCC.Visible = false;
-            this.CloseCCBCC.Click += new System.EventHandler(this.CloseCCBCC_Click);
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Name = "τροποποίησηΣτοιχείωνToolStripMenuItem";
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Text = "Τροποποίηση στοιχείων";
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserInfoToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -273,12 +283,12 @@ namespace InMail
             this.Text = "InMail";
             this.Basic.ResumeLayout(false);
             this.Basic.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).EndInit();
             this.CCBCCPanel.ResumeLayout(false);
             this.CCBCCPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,6 +318,7 @@ namespace InMail
         private System.Windows.Forms.TextBox MailText;
         private System.Windows.Forms.PictureBox AttachmentPicture;
         private System.Windows.Forms.PictureBox CloseCCBCC;
+        private System.Windows.Forms.ToolStripMenuItem τροποποίησηΣτοιχείωνToolStripMenuItem;
     }
 }
 

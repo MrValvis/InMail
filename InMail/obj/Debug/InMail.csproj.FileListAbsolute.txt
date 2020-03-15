@@ -8,3 +8,10 @@ c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.csproj.GenerateResour
 c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.csproj.CoreCompileInputs.cache
 c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.exe
 c:\users\codex\source\repos\InMail\InMail\obj\Debug\InMail.pdb
+C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\SendGrid.dll
+C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\Newtonsoft.Json.xml
+C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\SendGrid.pdb
+C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\SendGrid.xml
+C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.csproj.CopyComplete
+C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.UserInfoForm.resources

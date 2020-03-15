@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using System.Net.Mail;
+
+using InMail;
+using SendMailClass;
+
+
 
 namespace InMail
 {
@@ -16,7 +19,7 @@ namespace InMail
         public MainForm()
         {
             InitializeComponent();
-
+            
             #region Initialize values
             EmailTextbox.Text = "Πληκτρολογίστε ΕΔΩ το email του παραλήπτη";
             SubjectTextbox.Text = "Θέμα ";
@@ -93,8 +96,17 @@ namespace InMail
 
         //for mail attachments --https://stackoverflow.com/questions/5034503/adding-an-attachment-to-email-using-c-sharp/5034554
 
+        #region Actions{
 
+        #region SendEmail function
+        private void SendButton_Click(object sender, EventArgs e){
+        }
+        #endregion
 
+        private void ChangeUserInfoToolStripMenuItem_Click(object sender, EventArgs e){
+            UserInfoForm UIF = new UserInfoForm();
+            UIF.ShowDialog();
+        }
     }
 }
-
+    #endregion
