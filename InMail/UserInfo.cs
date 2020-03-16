@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using InMail;
 
 namespace InMail{
-
     public partial class UserInfoForm : Form{
         bool IsValid = false; //global variable for email validation
 
@@ -15,11 +13,10 @@ namespace InMail{
         }
 
         private void SaveButton_Click(object sender, EventArgs e){
-            
             try{ 
             string Documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string[] lines = { UsernameTextbox.Text + Environment.NewLine, EmailTextbox.Text + Environment.NewLine };
-            File.AppendAllLines(Path.Combine(Documents, "Documents.txt"), lines);
+            string[] lines = { UsernameTextbox.Text , EmailTextbox.Text };
+            File.WriteAllLines(Path.Combine(Documents, "Documents.txt"), lines);
                 MessageBox.Show("Τα στοιχεία σας εγγράφηκαν επιτυχώς", "Ολοκλήρωση εγγραφής");
                 this.Close();
             }
@@ -36,8 +33,11 @@ namespace InMail{
 
             //checks if the email is in correct form
             EmailValidation EValidation=new EmailValidation();
-            IsValid=EValidation.IsValidEmail(EmailTextbox.Text);
-            
+            IsValid = EValidation.IsValidEmail(EmailTextbox.Text);
+            //changes color to red if the email given is in wrong format
+            if (IsValid) { EmailTextbox.ForeColor = System.Drawing.Color.Black; }
+            else { EmailTextbox.ForeColor = System.Drawing.Color.Red; }
+
             FilledTextboxes();
         }
 

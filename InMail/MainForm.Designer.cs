@@ -49,9 +49,10 @@ namespace InMail
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.CCBCCButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThemeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.βοήθειαToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.τροποποίησηΣτοιχείωνToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileDialog = new System.Windows.Forms.OpenFileDialog();
             this.Basic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).BeginInit();
             this.CCBCCPanel.SuspendLayout();
@@ -115,6 +116,7 @@ namespace InMail
             this.AttachmentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AttachmentPicture.TabIndex = 11;
             this.AttachmentPicture.TabStop = false;
+            this.AttachmentPicture.Click += new System.EventHandler(this.AttachmentPicture_Click);
             // 
             // MailText
             // 
@@ -123,6 +125,7 @@ namespace InMail
             this.MailText.Name = "MailText";
             this.MailText.Size = new System.Drawing.Size(535, 192);
             this.MailText.TabIndex = 10;
+            this.MailText.Text = "Γράψτε το μήνυμα σας...";
             // 
             // SubjectTextbox
             // 
@@ -149,9 +152,9 @@ namespace InMail
             this.RecipientsLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.RecipientsLabel.Location = new System.Drawing.Point(12, 39);
             this.RecipientsLabel.Name = "RecipientsLabel";
-            this.RecipientsLabel.Size = new System.Drawing.Size(88, 16);
+            this.RecipientsLabel.Size = new System.Drawing.Size(89, 16);
             this.RecipientsLabel.TabIndex = 6;
-            this.RecipientsLabel.Text = "Παραλήπτες :";
+            this.RecipientsLabel.Text = "Παραλήπτhς :";
             // 
             // SendButton
             // 
@@ -249,6 +252,13 @@ namespace InMail
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "Menu";
             // 
+            // τροποποίησηΣτοιχείωνToolStripMenuItem
+            // 
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Name = "τροποποίησηΣτοιχείωνToolStripMenuItem";
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Text = "Τροποποίηση στοιχείων";
+            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserInfoToolStripMenuItem_Click);
+            // 
             // ThemeColorToolStripMenuItem
             // 
             this.ThemeColorToolStripMenuItem.Name = "ThemeColorToolStripMenuItem";
@@ -261,13 +271,11 @@ namespace InMail
             this.βοήθειαToolStripMenuItem.Name = "βοήθειαToolStripMenuItem";
             this.βοήθειαToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.βοήθειαToolStripMenuItem.Text = "Βοήθεια!";
+            this.βοήθειαToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
-            // τροποποίησηΣτοιχείωνToolStripMenuItem
+            // FileDialog
             // 
-            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Name = "τροποποίησηΣτοιχείωνToolStripMenuItem";
-            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
-            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Text = "Τροποποίηση στοιχείων";
-            this.τροποποίησηΣτοιχείωνToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserInfoToolStripMenuItem_Click);
+            this.FileDialog.FileName = "FileDialog";
             // 
             // MainForm
             // 
@@ -319,6 +327,7 @@ namespace InMail
         private System.Windows.Forms.PictureBox AttachmentPicture;
         private System.Windows.Forms.PictureBox CloseCCBCC;
         private System.Windows.Forms.ToolStripMenuItem τροποποίησηΣτοιχείωνToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog FileDialog;
     }
 }
 

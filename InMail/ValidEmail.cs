@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InMail
-{
-    class EmailValidation
-    {
+﻿namespace InMail{
+    class EmailValidation{
         public bool IsValidEmail(string email){
             try{
                 var addr = new System.Net.Mail.MailAddress(email);

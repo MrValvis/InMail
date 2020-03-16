@@ -1,23 +1,26 @@
 ﻿using System;
-using System.ComponentModel;
+using System.IO;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Linq;
 using System.Net.Mail;
-
-using InMail;
 using SendMailClass;
 
+namespace InMail {
+    public partial class MainForm : Form {
+
+        #region global variables
+        bool UserEmailIsValid;
+        bool IsValid = false; //global variable for email validation--recipient
+        static string Documents;
+        static string UserEmail;
+        EmailValidation EValidation = new EmailValidation();
+        UserInfoForm UIF = new UserInfoForm();
+
+    #endregion
 
 
-namespace InMail
-{
-    public partial class MainForm : Form
-    {
-        public MainForm()
-        {
+    public MainForm(){
             InitializeComponent();
             
             #region Initialize values
@@ -29,7 +32,21 @@ namespace InMail
                 GreetingLabel.Text = "Καλημέρα - Ας ετοιμάσουμε ένα νέο μήνυμα !"; }
             else {
                 GreetingLabel.Text = "Καλησπέρα - Ας ετοιμάσουμε ένα νέο μήνυμα !"; }
+
             #endregion
+
+            #region Check if user email exists
+            try{
+                string Documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Documents.txt";
+                string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
+            }
+            catch (Exception e) {
+                MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση.", "Τα στοιχεία χρήστη δεν βρέθηκαν!");
+                UIF.ShowDialog();
+            }
+            #endregion
+            // used for wrong or empty email
+            UserEmailIsValid = EValidation.IsValidEmail(UserEmail);
         }
 
         #region Visual
@@ -64,7 +81,15 @@ namespace InMail
 
         #region EmailTextbox
         private void EmailTextbox_TextChanged(object sender, EventArgs e){
-            if ((EmailTextbox.Text == "") || (EmailTextbox.Text == "Πληκτρολογίστε ΕΔΩ το email του παραλήπτη")) {
+            //checks if the email is in correct form
+            EmailValidation EValidation = new EmailValidation();
+            IsValid = EValidation.IsValidEmail(EmailTextbox.Text);
+            //changes color to red if the email given is in wrong format
+            if (IsValid) { EmailTextbox.ForeColor = Color.Black; }
+            else { EmailTextbox.ForeColor = Color.Red; }
+
+
+            if ((EmailTextbox.Text == "") || (EmailTextbox.Text == "Πληκτρολογίστε ΕΔΩ το email του παραλήπτη")|| !(IsValid)) {
                 SendButton.Enabled = false;
                 SendButton.BackColor = Color.LightGray;
             }
@@ -93,20 +118,60 @@ namespace InMail
 
         #endregion
 
-
-        //for mail attachments --https://stackoverflow.com/questions/5034503/adding-an-attachment-to-email-using-c-sharp/5034554
-
         #region Actions{
 
-        #region SendEmail function
+        #region SendEmail
         private void SendButton_Click(object sender, EventArgs e){
+            EmailValidation();
+
+
         }
+        #region SendEmail function
+        void EmailValidation() {
+            try{
+                if (!File.Exists(Documents)){
+                    MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση!");
+                    UIF.ShowDialog();
+                }
+                else if (!UserEmailIsValid){
+                    MessageBox.Show("Το email σας δεν είναι έγκυρο, παρακαλώ συμπληρώστε ξανα το email σας.", "Το email χρήστη δεν είναι έγκυρο!");
+                    UIF.ShowDialog();  
+                }
+                else{
+                    FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text);
+                    //FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text,AttachedFile);
+                }
+            }
+            catch (Exception error) { MessageBox.Show("Βρέθηκε κάποιο λάθος \nError : " + error.Message, "Παρουσιάστηκε σφάλμα!"); }
+        }
+
+        #endregion
         #endregion
 
         private void ChangeUserInfoToolStripMenuItem_Click(object sender, EventArgs e){
-            UserInfoForm UIF = new UserInfoForm();
             UIF.ShowDialog();
+        }
+
+        private void HelpToolStripMenuItem_Click(object sender, EventArgs e){
+            MessageBox.Show("                                                  Βασική εφαρμογή         \n\n\n" +
+                "1.1) Πρίν αποστείλετε ένα μήνυμα θα πρέπει να έχετε συμπληρώσει το email σας, μπορείτε ανά πάσα στιγμή να τροποποιήσετε το email σας απο την καρτέλα 'Τροποποίηση στοιχείων.'\n\n" +
+                "1.2)Για να στείλετε μήνυμα θα πρέπει υποχρεωτικά να έχετε συμπληρώσει το email του παραλήπτη! \n\n" +
+                "2)Μπορείτε να πραγματοποιήσετε αλλαγή απο λευκό σε μαύρο φόντο και αντίστροφα με την επιλογή 'White/Black Font'.\n\n\n" +
+                "                                Καρτέλα τροποποίησης στοιχείων (χρήστη)         \n\n" +
+                "1.1)Όνομα χρήστη : Το σύστημα χρησιμοποιεί το όνομα του υπολογιστή σας σαν default επιλογή μπορείτε να το αλλάξετε αν επιθυμήτε.\n" +
+                "1.2)Διεύθηνση e-mail : Για να μπορέσετε να στείλετε μήνυμα θα πρέπει να έχετε συμπληρώσει την διεύθηνση ηλεκτρονικού ταχυδρομείου σας.\n\n\n" +
+
+                "v0.1", "Βοήθεια");
+        }
+
+        private void AttachmentPicture_Click(object sender, EventArgs e){
+            //gets the user selected item and returns its absolute path
+            if (FileDialog.ShowDialog() == DialogResult.OK) { 
+            string AttachmentPath = FileDialog.FileName;
+            MessageBox.Show(AttachmentPath);
+            }
+            //Message.Attachments.Add(new Attachment(AttachmentPath)); attachments throw error 
         }
     }
 }
-    #endregion
+#endregion
