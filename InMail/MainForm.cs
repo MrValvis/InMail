@@ -1,18 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using SendMailClass;
+using System;
 using System.Drawing;
-using System.Windows.Forms;
+using System.IO;
 using System.Linq;
-using System.Net.Mail;
-using SendMailClass;
+using System.Windows.Forms;
 
-namespace InMail {
+namespace InMail
+{
     public partial class MainForm : Form {
 
         #region global variables
-        bool UserEmailIsValid;
+        static bool UserEmailIsValid;
         bool IsValid = false; //global variable for email validation--recipient
-        static string Documents;
+        static string Documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Documents.txt";
         static string UserEmail;
         EmailValidation EValidation = new EmailValidation();
         UserInfoForm UIF = new UserInfoForm();
@@ -37,10 +37,9 @@ namespace InMail {
 
             #region Check if user email exists
             try{
-                string Documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Documents.txt";
                 string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
             }
-            catch (Exception e) {
+            catch (Exception e) { 
                 MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση.", "Τα στοιχεία χρήστη δεν βρέθηκαν!");
                 UIF.ShowDialog();
             }
@@ -123,14 +122,14 @@ namespace InMail {
         #region SendEmail
         private void SendButton_Click(object sender, EventArgs e){
             EmailValidation();
-
-
         }
         #region SendEmail function
         void EmailValidation() {
+            string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
+            UserEmailIsValid = EValidation.IsValidEmail(UserEmail);
             try{
                 if (!File.Exists(Documents)){
-                    MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση!");
+                    MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση!","Δεν βρέθηκαν τα στοιχεία σας!");
                     UIF.ShowDialog();
                 }
                 else if (!UserEmailIsValid){

@@ -86,7 +86,7 @@ namespace InMail
             this.EmailTextbox.Name = "EmailTextbox";
             this.EmailTextbox.Size = new System.Drawing.Size(436, 20);
             this.EmailTextbox.TabIndex = 2;
-            this.EmailTextbox.Text = "Παραλήπτες μηνύματος";
+            this.EmailTextbox.Text = "Παραλήπτης μηνύματος";
             this.EmailTextbox.TextChanged += new System.EventHandler(this.EmailTextbox_TextChanged);
             // 
             // Basic
@@ -154,7 +154,7 @@ namespace InMail
             this.RecipientsLabel.Name = "RecipientsLabel";
             this.RecipientsLabel.Size = new System.Drawing.Size(89, 16);
             this.RecipientsLabel.TabIndex = 6;
-            this.RecipientsLabel.Text = "Παραλήπτhς :";
+            this.RecipientsLabel.Text = "Παραλήπτης :";
             // 
             // SendButton
             // 
