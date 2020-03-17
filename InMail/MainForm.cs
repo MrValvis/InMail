@@ -10,6 +10,7 @@ namespace InMail
     public partial class MainForm : Form {
 
         #region global variables
+        static string FileName,AttachmentPath;
         static bool ErrorEncountered;
         static bool UserEmailIsValid;
         bool IsValid = false; //global variable for email validation--recipient
@@ -140,7 +141,7 @@ namespace InMail
                 else{
                     try {
                         bool ErrorEncountered = false;
-                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text);
+                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text,  FileName,AttachmentPath);
                     }
                     catch (Exception error) {
                         ErrorEncountered = true;
@@ -180,13 +181,29 @@ namespace InMail
             #endregion
         }
 
+        private void RemoveAttachmentButton_Click(object sender, EventArgs e){
+            AttachmentPath = "";
+            FileName = "";
+            AttachedFileNameLabel.Visible = false;
+            RemoveAttachmentButton.Visible = false;
+            AttachedFileNameLabel.Text = "" + FileName;
+
+            
+        }
+
         private void AttachmentPicture_Click(object sender, EventArgs e){
+            AttachmentPath = "";
+            FileName = "";
             //gets the user selected item and returns its absolute path
             if (FileDialog.ShowDialog() == DialogResult.OK) { 
-            string AttachmentPath = FileDialog.FileName;
-            MessageBox.Show(AttachmentPath);
+                AttachmentPath = FileDialog.FileName;
+                FileName = Path.GetFileName(AttachmentPath);
+
+                //show the file that we have selected as attachment
+                AttachedFileNameLabel.Visible = true;
+                RemoveAttachmentButton.Visible = true;
+                AttachedFileNameLabel.Text = "Επισυναπτόμενο αρχείο : "+FileName;
             }
-            //Message.Attachments.Add(new Attachment(AttachmentPath)); attachments throw error 
         }
     }
 }

@@ -14,11 +14,12 @@ namespace SendMailClass{
         static string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
         #endregion
 
-        public static void SendFunction(string Recipient, string SubjectVariable, String Messange){
-            Execute(Recipient, SubjectVariable , Messange).Wait();
+        public static void SendFunction(string Recipient, string SubjectVariable, String Messange,string FileName, string AttachmentPath)
+        {
+            Execute(Recipient, SubjectVariable , Messange ,FileName, AttachmentPath).Wait();
         }
 
-        static async Task Execute(string Recipient, string SubjectVariable , string Messange)
+        static async Task Execute(string Recipient, string SubjectVariable , string Messange,string FileName,string AttachmentPath)
         {
 
             var apiKey = Environment.GetEnvironmentVariable("InMail_Api_Key");
@@ -28,12 +29,20 @@ namespace SendMailClass{
             var to = new EmailAddress(Recipient);
             var plainTextContent = Messange;
             var htmlContent = Messange;
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+            
+
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
+
+            var bytes = File.ReadAllBytes(AttachmentPath);
+            var file = Convert.ToBase64String(bytes);
+
+            msg.AddAttachment(FileName, file);
+
             var response = await client.SendEmailAsync(msg);
 
-            //System.Net.Mail.Attachment attachment;
-            //attachment = new System.Net.Mail.Attachment("c:/path/filename.txt");
-            //mail.Attachments.Add(attachment);
+           
+            
         }
     }
 }

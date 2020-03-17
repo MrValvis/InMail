@@ -53,11 +53,14 @@ namespace InMail
             this.ThemeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.βοήθειαToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.AttachedFileNameLabel = new System.Windows.Forms.Label();
+            this.RemoveAttachmentButton = new System.Windows.Forms.PictureBox();
             this.Basic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).BeginInit();
             this.CCBCCPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).BeginInit();
             this.SuspendLayout();
             // 
             // GreetingLabel
@@ -91,6 +94,8 @@ namespace InMail
             // 
             // Basic
             // 
+            this.Basic.Controls.Add(this.RemoveAttachmentButton);
+            this.Basic.Controls.Add(this.AttachedFileNameLabel);
             this.Basic.Controls.Add(this.AttachmentPicture);
             this.Basic.Controls.Add(this.MailText);
             this.Basic.Controls.Add(this.SubjectTextbox);
@@ -158,6 +163,7 @@ namespace InMail
             // 
             // SendButton
             // 
+            this.SendButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendButton.Location = new System.Drawing.Point(478, 0);
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(75, 23);
@@ -277,6 +283,31 @@ namespace InMail
             // 
             this.FileDialog.FileName = "FileDialog";
             // 
+            // AttachedFileNameLabel
+            // 
+            this.AttachedFileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AttachedFileNameLabel.AutoSize = true;
+            this.AttachedFileNameLabel.Location = new System.Drawing.Point(69, 355);
+            this.AttachedFileNameLabel.Name = "AttachedFileNameLabel";
+            this.AttachedFileNameLabel.Size = new System.Drawing.Size(94, 13);
+            this.AttachedFileNameLabel.TabIndex = 12;
+            this.AttachedFileNameLabel.Text = "AttachedFileName";
+            this.AttachedFileNameLabel.Visible = false;
+            // 
+            // RemoveAttachmentButton
+            // 
+            this.RemoveAttachmentButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveAttachmentButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RemoveAttachmentButton.Image = global::InMail.Properties.Resources.Close;
+            this.RemoveAttachmentButton.Location = new System.Drawing.Point(44, 351);
+            this.RemoveAttachmentButton.Name = "RemoveAttachmentButton";
+            this.RemoveAttachmentButton.Size = new System.Drawing.Size(19, 22);
+            this.RemoveAttachmentButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RemoveAttachmentButton.TabIndex = 13;
+            this.RemoveAttachmentButton.TabStop = false;
+            this.RemoveAttachmentButton.Visible = false;
+            this.RemoveAttachmentButton.Click += new System.EventHandler(this.RemoveAttachmentButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,6 +328,7 @@ namespace InMail
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,6 +360,8 @@ namespace InMail
         private System.Windows.Forms.PictureBox CloseCCBCC;
         private System.Windows.Forms.ToolStripMenuItem τροποποίησηΣτοιχείωνToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog FileDialog;
+        private System.Windows.Forms.Label AttachedFileNameLabel;
+        private System.Windows.Forms.PictureBox RemoveAttachmentButton;
     }
 }
 
