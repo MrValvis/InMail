@@ -10,6 +10,7 @@ namespace InMail
     public partial class MainForm : Form {
 
         #region global variables
+        static bool ErrorEncountered;
         static bool UserEmailIsValid;
         bool IsValid = false; //global variable for email validation--recipient
         static string Documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Documents.txt";
@@ -137,7 +138,19 @@ namespace InMail
                     UIF.ShowDialog();  
                 }
                 else{
-                    FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text);
+                    try {
+                        bool ErrorEncountered = false;
+                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text);
+                    }
+                    catch (Exception error) {
+                        ErrorEncountered = true;
+                        MessageBox.Show("Το μήνυμα δεν στάλθηκε! Δοκιμάστε ξανά.","Αποτυχία αποστολής");
+                    }
+                    finally{
+                        if (!ErrorEncountered){
+                            MessageBox.Show("Το μήνυμα σας στάλθηκε επιτυχώς!", "Η αποστολή ολοκληρώθηκε!");
+                        }
+                    }
                     //FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text,AttachedFile);
                 }
             }
@@ -152,6 +165,7 @@ namespace InMail
         }
 
         private void HelpToolStripMenuItem_Click(object sender, EventArgs e){
+            #region Help Messange
             MessageBox.Show("                                                  Βασική εφαρμογή         \n\n\n" +
                 "1)Το κόκκινο χρώμα στο email δείχνει οτι δεν είναι στην σωστή μορφή!\n" +
                 "1.1) Πρίν αποστείλετε ένα μήνυμα θα πρέπει να έχετε συμπληρώσει το email σας, μπορείτε ανά πάσα στιγμή να τροποποιήσετε το email σας απο την καρτέλα 'Τροποποίηση στοιχείων.'\n\n" +
@@ -163,6 +177,7 @@ namespace InMail
 
 
                 "v1.0", "Βοήθεια");
+            #endregion
         }
 
         private void AttachmentPicture_Click(object sender, EventArgs e){

@@ -14,16 +14,12 @@ namespace SendMailClass{
         static string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
         #endregion
 
-        //public static void SendFunction(string SubjectVariable, string Recipient, String Messange,Attachment Attached){
-        //    Execute(SubjectVariable, Recipient, Messange, Attached).Wait();
-        //}
-        //static async Task Execute(string SubjectVariable,string Recipient,String Messange,Attachment Attached){
-
-        public static void SendFunction(string SubjectVariable, string Recipient, String Messange){
-            Execute(SubjectVariable, Recipient, Messange).Wait();
+        public static void SendFunction(string Recipient, string SubjectVariable, String Messange){
+            Execute(Recipient, SubjectVariable , Messange).Wait();
         }
 
-        static async Task Execute(string SubjectVariable, string Recipient, String Messange){
+        static async Task Execute(string Recipient, string SubjectVariable , string Messange)
+        {
 
             var apiKey = Environment.GetEnvironmentVariable("InMail_Api_Key");
             var client = new SendGridClient(apiKey);
