@@ -10,7 +10,7 @@ namespace InMail
     public partial class MainForm : Form {
 
         #region global variables
-        static string FileName,AttachmentPath;
+        static string FileName="",AttachmentPath="";
         static bool ErrorEncountered;
         static bool UserEmailIsValid;
         bool IsValid = false; //global variable for email validation--recipient
@@ -145,7 +145,7 @@ namespace InMail
                     }
                     catch (Exception error) {
                         ErrorEncountered = true;
-                        MessageBox.Show("Το μήνυμα δεν στάλθηκε! Δοκιμάστε ξανά.","Αποτυχία αποστολής");
+                        MessageBox.Show("Το μήνυμα δεν στάλθηκε! Δοκιμάστε ξανά.", "Αποτυχία αποστολής");
                     }
                     finally{
                         if (!ErrorEncountered){

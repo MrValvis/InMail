@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -14,13 +15,11 @@ namespace SendMailClass{
         static string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
         #endregion
 
-        public static void SendFunction(string Recipient, string SubjectVariable, String Messange,string FileName, string AttachmentPath)
-        {
+        public static void SendFunction(string Recipient, string SubjectVariable, String Messange,string FileName, string AttachmentPath){
             Execute(Recipient, SubjectVariable , Messange ,FileName, AttachmentPath).Wait();
         }
 
-        static async Task Execute(string Recipient, string SubjectVariable , string Messange,string FileName,string AttachmentPath)
-        {
+        static async Task Execute(string Recipient, string SubjectVariable , string Messange,string FileName,string AttachmentPath){              
 
             var apiKey = Environment.GetEnvironmentVariable("InMail_Api_Key");
             var client = new SendGridClient(apiKey);
@@ -30,8 +29,6 @@ namespace SendMailClass{
             var plainTextContent = Messange;
             var htmlContent = Messange;
 
-            
-
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
 
             var bytes = File.ReadAllBytes(AttachmentPath);
@@ -39,10 +36,9 @@ namespace SendMailClass{
 
             msg.AddAttachment(FileName, file);
 
-            var response = await client.SendEmailAsync(msg);
+            //var response =await client.SendEmailAsync(msg);
+            var response = client.SendEmailAsync(msg);
 
-           
-            
         }
     }
 }
