@@ -141,11 +141,11 @@ namespace InMail
                 else{
                     try {
                         bool ErrorEncountered = false;
-                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text,  FileName,AttachmentPath);
+                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text, FileName,AttachmentPath);
                     }
                     catch (Exception error) {
                         ErrorEncountered = true;
-                        MessageBox.Show("Το μήνυμα δεν στάλθηκε! Δοκιμάστε ξανά.", "Αποτυχία αποστολής");
+                        MessageBox.Show("Το μήνυμα δεν στάλθηκε!Δοκιμάστε ξανά. \n" + error.ToString() , "Αποτυχία αποστολής");
                     }
                     finally{
                         if (!ErrorEncountered){
@@ -181,16 +181,6 @@ namespace InMail
             #endregion
         }
 
-        private void RemoveAttachmentButton_Click(object sender, EventArgs e){
-            AttachmentPath = "";
-            FileName = "";
-            AttachedFileNameLabel.Visible = false;
-            RemoveAttachmentButton.Visible = false;
-            AttachedFileNameLabel.Text = "" + FileName;
-
-            
-        }
-
         private void AttachmentPicture_Click(object sender, EventArgs e){
             AttachmentPath = "";
             FileName = "";
@@ -205,6 +195,15 @@ namespace InMail
                 AttachedFileNameLabel.Text = "Επισυναπτόμενο αρχείο : "+FileName;
             }
         }
+
+        private void RemoveAttachmentButton_Click(object sender, EventArgs e){
+            AttachmentPath = "";
+            FileName = "";
+            AttachedFileNameLabel.Visible = false;
+            RemoveAttachmentButton.Visible = false;
+            AttachedFileNameLabel.Text = "" + FileName;
+        }
+
     }
 }
 #endregion

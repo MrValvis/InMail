@@ -18,23 +18,25 @@ namespace SendMailClass{
         public static void SendFunction(string Recipient, string SubjectVariable, String Messange,string FileName, string AttachmentPath){
             Execute(Recipient, SubjectVariable , Messange ,FileName, AttachmentPath).Wait();
         }
+        
 
         static async Task Execute(string Recipient, string SubjectVariable , string Messange,string FileName,string AttachmentPath){              
 
             var apiKey = Environment.GetEnvironmentVariable("InMail_Api_Key");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(UserEmail, UserName);
-            var subject = SubjectVariable;
+            var subject = SubjectVariable=="" ? "(Κανένα θέμα)" : SubjectVariable;
             var to = new EmailAddress(Recipient);
-            var plainTextContent = Messange;
+            var plainTextContent = Messange == "" ? " " : Messange; ;
             var htmlContent = Messange;
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
 
+            if (AttachmentPath != "") {
             var bytes = File.ReadAllBytes(AttachmentPath);
             var file = Convert.ToBase64String(bytes);
-
             msg.AddAttachment(FileName, file);
+            }
 
             //var response =await client.SendEmailAsync(msg);
             var response = client.SendEmailAsync(msg);

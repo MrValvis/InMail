@@ -35,6 +35,8 @@ namespace InMail
             this.EmailMessangePlaceholder = new System.Windows.Forms.Label();
             this.EmailTextbox = new System.Windows.Forms.TextBox();
             this.Basic = new System.Windows.Forms.Panel();
+            this.RemoveAttachmentButton = new System.Windows.Forms.PictureBox();
+            this.AttachedFileNameLabel = new System.Windows.Forms.Label();
             this.AttachmentPicture = new System.Windows.Forms.PictureBox();
             this.MailText = new System.Windows.Forms.TextBox();
             this.SubjectTextbox = new System.Windows.Forms.TextBox();
@@ -53,14 +55,12 @@ namespace InMail
             this.ThemeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.βοήθειαToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.AttachedFileNameLabel = new System.Windows.Forms.Label();
-            this.RemoveAttachmentButton = new System.Windows.Forms.PictureBox();
             this.Basic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).BeginInit();
             this.CCBCCPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).BeginInit();
             this.SuspendLayout();
             // 
             // GreetingLabel
@@ -104,12 +104,37 @@ namespace InMail
             this.Basic.Controls.Add(this.SendButton);
             this.Basic.Controls.Add(this.EmailTextbox);
             this.Basic.Controls.Add(this.EmailMessangePlaceholder);
-            this.Basic.Controls.Add(this.CCBCCPanel);
             this.Basic.Controls.Add(this.CCBCCButton);
+            this.Basic.Controls.Add(this.CCBCCPanel);
             this.Basic.Location = new System.Drawing.Point(12, 49);
             this.Basic.Name = "Basic";
             this.Basic.Size = new System.Drawing.Size(557, 376);
             this.Basic.TabIndex = 3;
+            // 
+            // RemoveAttachmentButton
+            // 
+            this.RemoveAttachmentButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveAttachmentButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RemoveAttachmentButton.Image = global::InMail.Properties.Resources.Close;
+            this.RemoveAttachmentButton.Location = new System.Drawing.Point(44, 351);
+            this.RemoveAttachmentButton.Name = "RemoveAttachmentButton";
+            this.RemoveAttachmentButton.Size = new System.Drawing.Size(19, 22);
+            this.RemoveAttachmentButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RemoveAttachmentButton.TabIndex = 13;
+            this.RemoveAttachmentButton.TabStop = false;
+            this.RemoveAttachmentButton.Visible = false;
+            this.RemoveAttachmentButton.Click += new System.EventHandler(this.RemoveAttachmentButton_Click);
+            // 
+            // AttachedFileNameLabel
+            // 
+            this.AttachedFileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AttachedFileNameLabel.AutoSize = true;
+            this.AttachedFileNameLabel.Location = new System.Drawing.Point(69, 355);
+            this.AttachedFileNameLabel.Name = "AttachedFileNameLabel";
+            this.AttachedFileNameLabel.Size = new System.Drawing.Size(94, 13);
+            this.AttachedFileNameLabel.TabIndex = 12;
+            this.AttachedFileNameLabel.Text = "AttachedFileName";
+            this.AttachedFileNameLabel.Visible = false;
             // 
             // AttachmentPicture
             // 
@@ -129,7 +154,7 @@ namespace InMail
             this.MailText.Multiline = true;
             this.MailText.Name = "MailText";
             this.MailText.Size = new System.Drawing.Size(535, 192);
-            this.MailText.TabIndex = 10;
+            this.MailText.TabIndex = 5;
             this.MailText.Text = "Γράψτε το μήνυμα σας...";
             // 
             // SubjectTextbox
@@ -138,7 +163,7 @@ namespace InMail
             this.SubjectTextbox.Location = new System.Drawing.Point(117, 65);
             this.SubjectTextbox.Name = "SubjectTextbox";
             this.SubjectTextbox.Size = new System.Drawing.Size(436, 20);
-            this.SubjectTextbox.TabIndex = 8;
+            this.SubjectTextbox.TabIndex = 3;
             this.SubjectTextbox.Text = "Θέμα μηνύματος\r\n";
             // 
             // SubjectLabel
@@ -167,7 +192,7 @@ namespace InMail
             this.SendButton.Location = new System.Drawing.Point(478, 0);
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(75, 23);
-            this.SendButton.TabIndex = 5;
+            this.SendButton.TabIndex = 99;
             this.SendButton.Text = "Αποστολή";
             this.SendButton.UseVisualStyleBackColor = true;
             this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
@@ -241,7 +266,7 @@ namespace InMail
             this.CCBCCButton.Location = new System.Drawing.Point(39, 86);
             this.CCBCCButton.Name = "CCBCCButton";
             this.CCBCCButton.Size = new System.Drawing.Size(56, 22);
-            this.CCBCCButton.TabIndex = 0;
+            this.CCBCCButton.TabIndex = 4;
             this.CCBCCButton.Text = "CC/BCC";
             this.CCBCCButton.UseVisualStyleBackColor = true;
             this.CCBCCButton.Click += new System.EventHandler(this.CCBCCButton_Click);
@@ -283,31 +308,6 @@ namespace InMail
             // 
             this.FileDialog.FileName = "FileDialog";
             // 
-            // AttachedFileNameLabel
-            // 
-            this.AttachedFileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AttachedFileNameLabel.AutoSize = true;
-            this.AttachedFileNameLabel.Location = new System.Drawing.Point(69, 355);
-            this.AttachedFileNameLabel.Name = "AttachedFileNameLabel";
-            this.AttachedFileNameLabel.Size = new System.Drawing.Size(94, 13);
-            this.AttachedFileNameLabel.TabIndex = 12;
-            this.AttachedFileNameLabel.Text = "AttachedFileName";
-            this.AttachedFileNameLabel.Visible = false;
-            // 
-            // RemoveAttachmentButton
-            // 
-            this.RemoveAttachmentButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveAttachmentButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RemoveAttachmentButton.Image = global::InMail.Properties.Resources.Close;
-            this.RemoveAttachmentButton.Location = new System.Drawing.Point(44, 351);
-            this.RemoveAttachmentButton.Name = "RemoveAttachmentButton";
-            this.RemoveAttachmentButton.Size = new System.Drawing.Size(19, 22);
-            this.RemoveAttachmentButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RemoveAttachmentButton.TabIndex = 13;
-            this.RemoveAttachmentButton.TabStop = false;
-            this.RemoveAttachmentButton.Visible = false;
-            this.RemoveAttachmentButton.Click += new System.EventHandler(this.RemoveAttachmentButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,13 +322,13 @@ namespace InMail
             this.Text = "InMail";
             this.Basic.ResumeLayout(false);
             this.Basic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachmentPicture)).EndInit();
             this.CCBCCPanel.ResumeLayout(false);
             this.CCBCCPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseCCBCC)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RemoveAttachmentButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
