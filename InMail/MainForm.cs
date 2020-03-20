@@ -5,8 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace InMail
-{
+namespace InMail{
     public partial class MainForm : Form {
 
         #region global variables
@@ -29,6 +28,7 @@ namespace InMail
             EmailTextbox.Text = "Πληκτρολογίστε ΕΔΩ το email του παραλήπτη";
             SubjectTextbox.Text = "Θέμα ";
 
+
             string Time = string.Format("{0:hh:mm:ss tt}", DateTime.Now);
             if (Time.Contains("ΠΜ")||(Time.Contains("πμ"))|| (Time.Contains("AM")) || (Time.Contains("am"))){
                 GreetingLabel.Text = "Καλημέρα - Ας ετοιμάσουμε ένα νέο μήνυμα !"; }
@@ -38,7 +38,8 @@ namespace InMail
             #endregion
 
             #region Check if user email exists
-            try{
+            try
+            {
                 string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
             }
             catch (Exception e) { 
@@ -141,7 +142,7 @@ namespace InMail
                 else{
                     try {
                         bool ErrorEncountered = false;
-                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text, FileName,AttachmentPath);
+                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, CCTextbox.Text,BCCTextbox.Text, MailText.Text, FileName,AttachmentPath);
                     }
                     catch (Exception error) {
                         ErrorEncountered = true;

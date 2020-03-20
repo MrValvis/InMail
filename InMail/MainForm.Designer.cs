@@ -35,6 +35,7 @@ namespace InMail
             this.EmailMessangePlaceholder = new System.Windows.Forms.Label();
             this.EmailTextbox = new System.Windows.Forms.TextBox();
             this.Basic = new System.Windows.Forms.Panel();
+            this.HistoryDropdown = new System.Windows.Forms.ComboBox();
             this.RemoveAttachmentButton = new System.Windows.Forms.PictureBox();
             this.AttachedFileNameLabel = new System.Windows.Forms.Label();
             this.AttachmentPicture = new System.Windows.Forms.PictureBox();
@@ -43,13 +44,13 @@ namespace InMail
             this.SubjectLabel = new System.Windows.Forms.Label();
             this.RecipientsLabel = new System.Windows.Forms.Label();
             this.SendButton = new System.Windows.Forms.Button();
+            this.CCBCCButton = new System.Windows.Forms.Button();
             this.CCBCCPanel = new System.Windows.Forms.Panel();
             this.CloseCCBCC = new System.Windows.Forms.PictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.BCCTextbox = new System.Windows.Forms.TextBox();
             this.BCCLabel = new System.Windows.Forms.Label();
             this.CClabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.CCBCCButton = new System.Windows.Forms.Button();
+            this.CCTextbox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.τροποποίησηΣτοιχείωνToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThemeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +86,8 @@ namespace InMail
             // EmailTextbox
             // 
             this.EmailTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.EmailTextbox.Location = new System.Drawing.Point(117, 39);
+            this.EmailTextbox.Location = new System.Drawing.Point(117, 40);
+            this.EmailTextbox.MaxLength = 1000;
             this.EmailTextbox.Name = "EmailTextbox";
             this.EmailTextbox.Size = new System.Drawing.Size(436, 20);
             this.EmailTextbox.TabIndex = 2;
@@ -94,6 +96,7 @@ namespace InMail
             // 
             // Basic
             // 
+            this.Basic.Controls.Add(this.HistoryDropdown);
             this.Basic.Controls.Add(this.RemoveAttachmentButton);
             this.Basic.Controls.Add(this.AttachedFileNameLabel);
             this.Basic.Controls.Add(this.AttachmentPicture);
@@ -110,6 +113,14 @@ namespace InMail
             this.Basic.Name = "Basic";
             this.Basic.Size = new System.Drawing.Size(557, 376);
             this.Basic.TabIndex = 3;
+            // 
+            // HistoryDropdown
+            // 
+            this.HistoryDropdown.FormattingEnabled = true;
+            this.HistoryDropdown.Location = new System.Drawing.Point(536, 39);
+            this.HistoryDropdown.Name = "HistoryDropdown";
+            this.HistoryDropdown.Size = new System.Drawing.Size(17, 21);
+            this.HistoryDropdown.TabIndex = 100;
             // 
             // RemoveAttachmentButton
             // 
@@ -151,6 +162,7 @@ namespace InMail
             // MailText
             // 
             this.MailText.Location = new System.Drawing.Point(18, 156);
+            this.MailText.MaxLength = 3000;
             this.MailText.Multiline = true;
             this.MailText.Name = "MailText";
             this.MailText.Size = new System.Drawing.Size(535, 192);
@@ -161,6 +173,7 @@ namespace InMail
             // 
             this.SubjectTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.SubjectTextbox.Location = new System.Drawing.Point(117, 65);
+            this.SubjectTextbox.MaxLength = 100;
             this.SubjectTextbox.Name = "SubjectTextbox";
             this.SubjectTextbox.Size = new System.Drawing.Size(436, 20);
             this.SubjectTextbox.TabIndex = 3;
@@ -180,7 +193,7 @@ namespace InMail
             // 
             this.RecipientsLabel.AutoSize = true;
             this.RecipientsLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.RecipientsLabel.Location = new System.Drawing.Point(12, 39);
+            this.RecipientsLabel.Location = new System.Drawing.Point(12, 40);
             this.RecipientsLabel.Name = "RecipientsLabel";
             this.RecipientsLabel.Size = new System.Drawing.Size(89, 16);
             this.RecipientsLabel.TabIndex = 6;
@@ -197,13 +210,23 @@ namespace InMail
             this.SendButton.UseVisualStyleBackColor = true;
             this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
+            // CCBCCButton
+            // 
+            this.CCBCCButton.Location = new System.Drawing.Point(39, 86);
+            this.CCBCCButton.Name = "CCBCCButton";
+            this.CCBCCButton.Size = new System.Drawing.Size(56, 22);
+            this.CCBCCButton.TabIndex = 4;
+            this.CCBCCButton.Text = "CC/BCC";
+            this.CCBCCButton.UseVisualStyleBackColor = true;
+            this.CCBCCButton.Click += new System.EventHandler(this.CCBCCButton_Click);
+            // 
             // CCBCCPanel
             // 
             this.CCBCCPanel.Controls.Add(this.CloseCCBCC);
-            this.CCBCCPanel.Controls.Add(this.textBox2);
+            this.CCBCCPanel.Controls.Add(this.BCCTextbox);
             this.CCBCCPanel.Controls.Add(this.BCCLabel);
             this.CCBCCPanel.Controls.Add(this.CClabel);
-            this.CCBCCPanel.Controls.Add(this.textBox1);
+            this.CCBCCPanel.Controls.Add(this.CCTextbox);
             this.CCBCCPanel.Location = new System.Drawing.Point(18, 87);
             this.CCBCCPanel.Name = "CCBCCPanel";
             this.CCBCCPanel.Size = new System.Drawing.Size(538, 52);
@@ -223,14 +246,14 @@ namespace InMail
             this.CloseCCBCC.Visible = false;
             this.CloseCCBCC.Click += new System.EventHandler(this.CloseCCBCC_Click);
             // 
-            // textBox2
+            // BCCTextbox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBox2.Location = new System.Drawing.Point(99, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(436, 20);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.Text = "BCC";
+            this.BCCTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.BCCTextbox.Location = new System.Drawing.Point(99, 28);
+            this.BCCTextbox.Name = "BCCTextbox";
+            this.BCCTextbox.Size = new System.Drawing.Size(436, 20);
+            this.BCCTextbox.TabIndex = 9;
+            this.BCCTextbox.Text = "BCC";
             // 
             // BCCLabel
             // 
@@ -252,24 +275,14 @@ namespace InMail
             this.CClabel.TabIndex = 7;
             this.CClabel.Text = "CC :";
             // 
-            // textBox1
+            // CCTextbox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBox1.Location = new System.Drawing.Point(99, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(436, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "CC";
-            // 
-            // CCBCCButton
-            // 
-            this.CCBCCButton.Location = new System.Drawing.Point(39, 86);
-            this.CCBCCButton.Name = "CCBCCButton";
-            this.CCBCCButton.Size = new System.Drawing.Size(56, 22);
-            this.CCBCCButton.TabIndex = 4;
-            this.CCBCCButton.Text = "CC/BCC";
-            this.CCBCCButton.UseVisualStyleBackColor = true;
-            this.CCBCCButton.Click += new System.EventHandler(this.CCBCCButton_Click);
+            this.CCTextbox.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.CCTextbox.Location = new System.Drawing.Point(99, 5);
+            this.CCTextbox.Name = "CCTextbox";
+            this.CCTextbox.Size = new System.Drawing.Size(436, 20);
+            this.CCTextbox.TabIndex = 3;
+            this.CCTextbox.Text = "CC";
             // 
             // menuStrip1
             // 
@@ -352,9 +365,9 @@ namespace InMail
         private System.Windows.Forms.Panel CCBCCPanel;
         private System.Windows.Forms.Label BCCLabel;
         private System.Windows.Forms.Label CClabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CCTextbox;
         private System.Windows.Forms.Button CCBCCButton;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox BCCTextbox;
         private System.Windows.Forms.TextBox MailText;
         private System.Windows.Forms.PictureBox AttachmentPicture;
         private System.Windows.Forms.PictureBox CloseCCBCC;
@@ -362,6 +375,7 @@ namespace InMail
         private System.Windows.Forms.OpenFileDialog FileDialog;
         private System.Windows.Forms.Label AttachedFileNameLabel;
         private System.Windows.Forms.PictureBox RemoveAttachmentButton;
+        private System.Windows.Forms.ComboBox HistoryDropdown;
     }
 }
 
