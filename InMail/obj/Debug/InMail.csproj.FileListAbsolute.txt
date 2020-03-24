@@ -13,5 +13,5 @@ C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.csproj.CoreCompileInp
 C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.csproj.CopyComplete
 C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.exe
 C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.pdb
-C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.csprojAssemblyReference.cache
 C:\Users\CODEX\source\repos\InMail\InMail\bin\Debug\InMail.pdb
+C:\Users\CODEX\source\repos\InMail\InMail\obj\Debug\InMail.csprojAssemblyReference.cache

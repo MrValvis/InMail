@@ -126,11 +126,15 @@ namespace InMail{
         private void SendButton_Click(object sender, EventArgs e){
             EmailValidation();
         }
+        
         #region SendEmail function
         void EmailValidation() {
-            string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
+                        string UserEmail = File.ReadLines(Documents).Skip(1).Take(1).First();
             UserEmailIsValid = EValidation.IsValidEmail(UserEmail);
+
+            
             try{
+                #region messange for nonexisting or invalid user email
                 if (!File.Exists(Documents)){
                     MessageBox.Show("Δεν βρέθηκαν τα στοιχεία χρήστη, παρακαλώ συμπληρώστε τα στοιχεία σας και πατήστε αποθήκευση!","Δεν βρέθηκαν τα στοιχεία σας!");
                     UIF.ShowDialog();
@@ -139,18 +143,23 @@ namespace InMail{
                     MessageBox.Show("Το email σας δεν είναι έγκυρο, παρακαλώ συμπληρώστε ξανα το email σας.", "Το email χρήστη δεν είναι έγκυρο!");
                     UIF.ShowDialog();  
                 }
+                #endregion 
                 else{
-                    try {
+                    string APICodeReturned="";
+                    try{
                         bool ErrorEncountered = false;
-                        FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, CCTextbox.Text,BCCTextbox.Text, MailText.Text, FileName,AttachmentPath);
+                        APICodeReturned=FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, CCTextbox.Text,BCCTextbox.Text, MailText.Text, FileName,AttachmentPath);
                     }
                     catch (Exception error) {
                         ErrorEncountered = true;
                         MessageBox.Show("Το μήνυμα δεν στάλθηκε!Δοκιμάστε ξανά. \n" + error.ToString() , "Αποτυχία αποστολής");
                     }
                     finally{
-                        if (!ErrorEncountered){
+                        if ((APICodeReturned == "Accepted") && (!ErrorEncountered)){
                             MessageBox.Show("Το μήνυμα σας στάλθηκε επιτυχώς!", "Η αποστολή ολοκληρώθηκε!");
+                        }
+                        else{
+                            MessageBox.Show("Το μήνυμα σας δεν εστάλη, ελέγξτε την σύνδεση δικτύου και προσπαθήστε ξανά.", "Πρόβλημα δικτύου!"); 
                         }
                     }
                     //FunctionCall.SendFunction(EmailTextbox.Text, SubjectTextbox.Text, MailText.Text,AttachedFile);
